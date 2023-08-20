@@ -26,11 +26,12 @@ export const App = () => {
 
   useEffect(() => {
     loadContactsFromStorage();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     saveContactsToStorage();
-  }, []); 
+  }, [contacts]);
+
 
 
 
