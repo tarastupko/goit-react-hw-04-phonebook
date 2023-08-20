@@ -36,21 +36,21 @@ export const App = () => {
 
 
 
-  const handleFormSubmit = ({ name, number }) => {
-    if (isContactAlreadyExists(name)) {
-      showInfoNotification(`${name} is already in contacts`);
-      return;
-    }
+const handleFormSubmit = ({ name, number }) => {
+  if (isContactAlreadyExists(name)) {
+    showInfoNotification(`${name} is already in contacts`);
+    return;
+  }
 
-    const newContact = {
-      name,
-      number,
-      id: nanoid(),
-    };
-
-    addContact(newContact);
-    showSuccessNotification('Contact was added successfully');
+  const newContact = {
+    name,
+    number,
+    id: nanoid(),
   };
+
+  addContact(newContact);
+  showSuccessNotification('Contact was added successfully');
+};
 
   const isContactAlreadyExists = (name) => {
     return contacts.some((contact) => contact.name.toLowerCase() === name.toLowerCase());
@@ -60,9 +60,9 @@ export const App = () => {
     Notiflix.Notify.info(message);
   };
 
-  const addContact = (newContact) => {
-    setContacts((prevContacts) => [...prevContacts, newContact]);
-  };
+const addContact = (newContact) => {
+  setContacts([...contacts, newContact]);
+};
 
   const showSuccessNotification = (message) => {
     Notiflix.Notify.success(message);
