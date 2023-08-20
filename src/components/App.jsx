@@ -25,13 +25,24 @@ export const App = () => {
   };
 
   useEffect(() => {
-    loadContactsFromStorage();
+    const loadFromStorage = () => {
+      const storedContacts = dataManager.load(storageKeys.CONTACTS);
+      if (storedContacts) {
+        setContacts(storedContacts);
+      }
+    };
+
+    loadFromStorage();
   }, []);
 
   useEffect(() => {
-    saveContactsToStorage();
+    if (contacts.length > 0) {
+      saveContactsToStorage();
+    
+    }
   }, [contacts]);
 
+  // Решта коду без змін
 
 const handleFormSubmit = ({ name, number }) => {
   if (isContactAlreadyExists(name)) {
@@ -76,6 +87,7 @@ const addContact = (newContact) => {
 
   const onDeleteBtn = (id) => {
     removeContact(id);
+     Notiflix.Notify.failure('Contact deleted successfully');
   };
 
   const removeContact = (id) => {
