@@ -13,17 +13,6 @@ export const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
-  const loadContactsFromStorage = () => {
-    const storedContacts = dataManager.load(storageKeys.CONTACTS);
-    if (storedContacts) {
-      setContacts(storedContacts);
-    }
-  };
-
-  const saveContactsToStorage = () => {
-    dataManager.save(storageKeys.CONTACTS, contacts);
-  };
-
   useEffect(() => {
     const loadFromStorage = () => {
       const storedContacts = dataManager.load(storageKeys.CONTACTS);
@@ -36,13 +25,14 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
+    const saveContactsToStorage = () => {
+      dataManager.save(storageKeys.CONTACTS, contacts);
+    };
+
     if (contacts.length > 0) {
       saveContactsToStorage();
-    
     }
   }, [contacts]);
-
-  // Решта коду без змін
 
 const handleFormSubmit = ({ name, number }) => {
   if (isContactAlreadyExists(name)) {
