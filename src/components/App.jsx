@@ -24,23 +24,13 @@ export const App = () => {
     dataManager.save(storageKeys.CONTACTS, contacts);
   };
 
-useEffect(() => {
-  const loadFromStorage = () => {
-    const storedContacts = dataManager.load(storageKeys.CONTACTS);
-    if (storedContacts) {
-      setContacts(storedContacts);
-    }
-  };
-
-  loadFromStorage();
-}, []);
+  useEffect(() => {
+    loadContactsFromStorage();
+  }, []);
 
   useEffect(() => {
     saveContactsToStorage();
   }, [contacts]);
-
-
-
 
 
 const handleFormSubmit = ({ name, number }) => {
