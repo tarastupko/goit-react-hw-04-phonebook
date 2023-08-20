@@ -22,6 +22,7 @@ export const App = () => {
     };
 
     loadFromStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export const App = () => {
     if (contacts.length > 0) {
       saveContactsToStorage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contacts]);
 
 const handleFormSubmit = ({ name, number }) => {
