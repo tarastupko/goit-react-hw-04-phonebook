@@ -1,23 +1,22 @@
 
-class DataManager {
-  constructor() {
-    this.storage = window.localStorage;
-  }
+import { useState } from 'react';
 
+function DataManager() {
+  const storage = window.localStorage;
 
-  save(key, value) {
+  const save = (key, value) => {
     try {
       const serializedData = JSON.stringify(value);
-      this.storage.setItem(key, serializedData);
+      storage.setItem(key, serializedData);
       console.log(`Дані з ключем ${key} успішно збережено.`);
     } catch (error) {
       console.error(`Помилка при збереженні даних: ${error.message}`);
     }
-  }
+  };
 
-  load(key) {
+  const load = (key) => {
     try {
-      const serializedData = this.storage.getItem(key);
+      const serializedData = storage.getItem(key);
       if (serializedData === null) {
         console.log(`Дані з ключем ${key} відсутні.`);
         return undefined;
@@ -28,7 +27,12 @@ class DataManager {
     } catch (error) {
       console.error(`Помилка при завантаженні даних: ${error.message}`);
     }
-  }
+  };
+
+  return {
+    save,
+    load,
+  };
 }
 
 export default DataManager;
