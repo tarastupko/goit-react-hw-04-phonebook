@@ -1,6 +1,4 @@
 
-import { useState } from 'react';
-
 function DataManager() {
   const storage = window.localStorage;
 
